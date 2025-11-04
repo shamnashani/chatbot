@@ -1,0 +1,28 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/edsub_post/">
+{% csrf_token %}
+  <table width="200" border="1" class="table table-bordered">
+  <input type="hidden"name="id"value="{{ data.id }}" >
+     <tr>
+      <th scope="col">PROGRAMME</th>
+   <th scope="col">
+        <select name="select" id="select" >
+          {% for i in data1 %}
+          <option value="{{ i.id }}" {% if i.id == data.COURSE.id %} selected {% endif %} >{{ i.coursename }}</option>
+          {% endfor %}
+        </select></th></tr>
+    <tr>
+      <td>COURSE</td>
+      <td><input type="text" name="textfield" id="textfield "value="{{ data.subjectname}}"  class="form-control" /></td>
+    </tr>
+   <tr>
+      <td>SEM</td>
+      <td><input type="text" name="textfield2" id="textfield2 "value="{{ data.sem}}"  class="form-control" /></td>
+    </tr>  </table>
+    <tr>
+      <td>&nbsp;</td>
+      <input type="submit" name="button" id="button" value="UPDATE" class="btn btn-success"/>
+    </tr>
+</form>
+{% endblock %}

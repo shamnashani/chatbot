@@ -1,0 +1,66 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form action="/myapp/s_viewprofile/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+{% csrf_token %}
+    <h3 align="center">VIEW PROFILE</h3>
+<table width="200" border="1" class="table table-bordered">
+  <tr>
+    <th scope="col">DEPARTMENT</th>
+    <td>
+      {{ data.DEPRTMENT.departmentname }}
+  </td>
+  </tr>
+  <tr>
+    <td>NAME</td>
+    <td>
+        {{ data.name }}
+    </td>
+  </tr>
+    <tr>
+    <td>DESIGNATION</td>
+    <td>
+        {{ data.designation }}
+    </td>
+  </tr>
+  <tr>
+    <td>PLACE</td>
+    <td>
+        {{ data.place }}
+    </td>
+  </tr>
+  <tr>
+    <td>DISTRICT</td>
+    <td>
+        {{ data.district }}
+    </td>
+  </tr>
+  <tr>
+    <td>PHONE</td>
+    <td>
+        {{ data.phone }}
+    </td>
+  </tr>
+  <tr>
+    <td>E-MAIL</td>
+    <td>{{ data.email}}</td>
+  </tr>
+  <tr>
+    <td>GENDER</td>
+    <td>{{ data.gender}}</td>
+  </tr>
+
+  <tr>
+    <td>QUALIFICATION</td>
+    <td>{{ data.qualification }}</td>
+  </tr>
+  <tr>
+    <td>EXPERIENCE</td>
+    <td>{{ data.experience }}</td>
+  </tr>
+  <tr>
+    <td>PHOTO</td>
+    <td><img src="{{ data.photo }}" height="100" width="100"></td>
+  </tr>
+</table>
+</form>
+{% endblock %}

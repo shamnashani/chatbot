@@ -1,0 +1,18 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/edsuprt_post/">
+    {% csrf_token %}
+
+<input type="hidden" name="id" id="textfield" value="{{ data.id }}" />
+  <table border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">CATEGORY</th>
+      <th scope="col"><input type="text" name="select" id="select" value="{{ data.category }}" class="form-control">
+      </th>
+    </tr></table>
+
+    <tr>
+      <input type="submit" name="button" id="button" class="btn btn-success" value="UPDATE" />
+    </tr>
+</form>
+{% endblock %}

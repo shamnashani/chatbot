@@ -1,0 +1,23 @@
+{% extends 'STAFF/staff_index.html' %}
+{% block body %}
+<form action="/myapp/s_edfacilitypost/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+    <input type="hidden" name="id" id="textfield" value="{{ data.id }}" />
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">NAME</th>
+      <th scope="col"><input type="text" name="select" id="select" value="{{ data.name }}"  pattern="[A-Z a-z]*" />
+      </th>
+    </tr>
+    <tr>
+      <td>IMAGE</td>
+      <td><label for="fileField"></label>
+          <img src="{{ data.image }}" height="100" width="100">
+      <input type="file" name="fileField" id="fileField"  /></td>
+    </tr>
+      </table>
+    <tr>
+        <input type="submit" name="button" id="button" class="btn btn-success" value="EDIT" />
+    </tr>
+</form>
+{% endblock %}

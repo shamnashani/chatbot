@@ -1,0 +1,27 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/addsub_post/">
+{% csrf_token %}
+<h3 align="center">ADD SUBJECT</h3>
+  <table width="308" border="1" class="table table-bordered">
+    <tr>
+      <th width="103" scope="col">PROGRAMME</th>
+      <td><select name="std">
+          {% for i in data %}
+          <option value="{{ i.id }}">{{ i.coursename }}</option>
+          {% endfor %}
+      </select></td>
+    </tr>
+    <tr>
+      <td>COURSE NAME</td>
+      <td><input type="text" class="form-control" name="textfield" id="textfield"  required /></td>
+    </tr>
+  <tr>
+      <td>SEM</td>
+      <td><input type="text" class="form-control" name="textfield2" id="textfield2" pattern="[0-9]" required /></td>
+    </tr></table>
+    <tr>
+    <input type="submit" class="btn btn-success" name="button" id="button" value="ADD" />
+    </tr>
+</form>
+{% endblock %}

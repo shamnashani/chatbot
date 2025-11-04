@@ -1,0 +1,37 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/s_viewfacilitypost/">
+{% csrf_token %}
+<h3 align="center">VIEW FACILITY</h3>
+  <table width="325" border="1" class="table table-bordered">
+    <tr>
+      <th width="78" scope="col">NAME</th>
+{#          <select name="select" id="select">#}
+{#            {% for i in n %}#}
+{#            <option value="{{ i.name }}">{{ i.name }}</option>#}
+{#            {% endfor %}#}
+{#      </select>#}
+          <td><input type="text" name="text" /></td>
+      </th>
+      <th width="148" scope="col"><input type="submit" class="btn btn-success" name="button" id="button" value="SEARCH" /></th>
+    </tr>
+  </table>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">S/NO</th>
+      <th scope="col">NAME</th>
+      <th scope="col">IMAGE</th>
+      <th colspan="2" scope="col">ACTION</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.name }}</td>
+      <td><img src="{{i.image}}" height="100" width="100"/></td>
+      <td><a href="/myapp/s_edfacility/{{ i.id }}#id">EDIT</a></td>
+      <td><a href="/myapp/s_dlfacility/{{ i.id }}#id">DELETE</a></td>
+        {% endfor %}
+    </tr>
+  </table>
+</form>
+{% endblock %}

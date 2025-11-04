@@ -1,0 +1,36 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/s_viewrplypost/">
+{% csrf_token %}
+<h3 align="center">VIEW REPLY</h3>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">FROM</th>
+      <th scope="col"><input type="date" name="textfield" id="textfield" /></th>
+      <th scope="col">TO</th>
+      <th scope="col"><input type="date" name="textfield2" id="textfield2" /></th>
+      <th scope="col"><input type="submit" class="btn btn-success" name="button" id="button" value="SEARCH" /></th>
+    </tr>
+  </table>
+  <table width="537" border="1"class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="121" scope="col">DATE</th>
+      <th width="115" scope="col">COMPLAINT</th>
+              <th width="80" scope="col">REPLY</th>
+              <th width="80" scope="col">Status</th>
+
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.date }}</td>
+      <td>{{ i.complaint }}</td>
+      <td>{{ i.reply }}&nbsp;</td>
+      <td>{{ i.status }}</td>
+
+        {% endfor %}
+    </tr>
+  </table>
+</form>
+{% endblock %}

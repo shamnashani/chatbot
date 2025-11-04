@@ -1,0 +1,30 @@
+{% extends 'PUBLIC/public_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/p_viewcourcepost/">
+{% csrf_token %}
+
+<table class="pull-left">
+    <tr>
+      <th width="174" scope="col"><input type="text"  name="textfield" id="textfield" placeholder="PROGRAMME NAME" class="form-control"/></th>
+      <th width="106" scope="col"><input type="submit" class="btn btn-success" name="button" id="button" value="SEARCH" /></th>
+    </tr>
+  </table>
+<br><br>
+  <table width="618" border="1" class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="145" scope="col">DEPARTMENT</th>
+      <th width="159" scope="col">PROGRAMME NAME</th>
+      <th width="106" scope="col">SEM</th>
+    </tr>
+       {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.DEPARTMENT.departmentname }}</td>
+        <td>{{ i.coursename }}</td>
+        <td>{{ i.semester }}</td>
+        {% endfor %}
+    </tr>
+  </table>
+</form>
+{% endblock %}

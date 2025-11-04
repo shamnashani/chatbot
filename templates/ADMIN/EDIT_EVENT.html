@@ -1,0 +1,28 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/edevent_post/">
+    {% csrf_token %}
+  <table width="288" border="1">
+    <tr>
+      <th width="104" scope="col">DATE</th>
+      <th width="168" scope="col"><input type="text" name="textfield" id="textfield" required/></th>
+    </tr>
+    <tr>
+      <td>TYPE</td>
+      <td><input type="text" name="textfield2" id="textfield2" required /></td>
+    </tr>
+    <tr>
+      <td>TIME</td>
+      <td><input type="text" name="textfield2" id="textfield2" required/></td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>VENUE</td>
+      <td><input type="text" name="textfield4" id="textfield4" required /></td>
+    </tr>
+      <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="EDIT" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

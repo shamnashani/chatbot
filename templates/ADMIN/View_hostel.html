@@ -1,0 +1,71 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form2" name="form2" method="" action="/myapp/viewhostel/">
+   {% csrf_token %}
+<h3 align="center">VIEW HOSTEL</h3>
+</form>
+    <form id="form1" name="form1" method="" action="">
+  <table width="656" border="1" class="table table-bordered">
+   <tr>
+      <th width="135" scope="col">FACILITY</th>
+      <th width="400" scope="col">DESCRIPTION</th>
+       <th colspan="2" scope="col">ACTION</th></tr>
+
+{#    <title>Facility Details</title>#}
+    <style>
+
+        #menu {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+    </style>
+
+  {% for i in data %}
+    <tr>
+{#      <td>{{ forloop.counter }}</td>#}
+      <td>{{ i.facility}}</td>
+      <td>{{ i.description }}</td>
+      <td><a href="/myapp/edhostel/{{ i.id }}#id">EDIT</a></td>
+      <td><a href="/myapp/delhostel/{{ i.id }}#id">DELETE</a></td>
+        {% endfor %}
+               </tr>
+               <tr>
+                <td>Food</td>
+                    <td colspan="3">
+                    <label for="days">Select Day:</label>
+                    <select id="days" onchange="showMenu()">
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                    </select>
+                    <p id="menu">Menu will be displayed here.</p>
+                    </td>
+            </tr>
+
+    </div>
+
+    <script>
+        function showMenu() {
+            var day = document.getElementById("days").value;
+            var menuItems = {
+                monday: "Rice, Dal, Curry, Salad",
+                tuesday: "Chapati, Paneer Masala, Rice, Curd",
+                wednesday: "Idli, Sambar, Chutney, Upma",
+                thursday: "Pasta, Garlic Bread, Soup",
+                friday: "Biryani, Raita, Sweet Dish",
+                saturday: "Dosa, Sambar, Coconut Chutney",
+                sunday: "Puri, Chole, Halwa"
+            };
+            document.getElementById("menu").innerText = "Menu: " + menuItems[day];
+        }
+    </script>
+    </table>
+    </form>
+
+{% endblock %}

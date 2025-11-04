@@ -1,0 +1,17 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/s_sendfeedpost/">
+    {% csrf_token %}
+    <h3 align="center">SEND YOUR FEEDBACK</h3>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <td>FEEDBACK</td>
+        <td><textarea name="textfield" class="form-control" id="textfield" required ></textarea></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" class="btn btn-success" name="button" id="button" value="SEND" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

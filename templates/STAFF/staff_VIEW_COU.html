@@ -1,0 +1,28 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/s_viewcoupost/">
+{% csrf_token %}
+<h3 align="center">VIEW PROGRAMME</h3>
+      <th width="86" scope="col">PROGRAMME</th>
+      <th width="174" scope="col"><input type="text" name="textfield" id="textfield" /></th>
+      <th width="106" scope="col"><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-success"/></th>
+    </tr>
+  </table>
+  <table width="618" border="1" class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="145" scope="col">DEPARTMENT</th>
+      <th width="159" scope="col">PROGRAMME NAME</th>
+      <th width="106" scope="col">SEM</th>
+    </tr>
+       {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.DEPARTMENT.departmentname }}</td>
+        <td>{{ i.coursename }}</td>
+        <td>{{ i.semester }}</td>
+        {% endfor %}
+    </tr>
+  </table>
+</form>
+{% endblock %}

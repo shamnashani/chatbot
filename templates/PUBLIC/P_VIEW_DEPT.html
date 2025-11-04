@@ -1,0 +1,24 @@
+{% extends 'PUBLIC/public_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+{% csrf_token %}
+  <table width="325" border="1" class="table table-bordered">
+{#    <tr>#}
+{#      <th width="200" scope="col"><input type="text" name="textfield" id="textfield" /></th>#}
+{#      <th width="109" scope="col"><input type="submit" name="button" id="button" value="SEARCH" /></th>#}
+{#    </tr>#}
+  </table>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">S/NO</th>
+      <th scope="col">DEPARTMENT</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.departmentname }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}

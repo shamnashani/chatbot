@@ -1,0 +1,27 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/addevent_post/">
+    {% csrf_token %}
+    <h3 align="center">ADD EVENT</h3>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">DATE</th>
+      <th scope="col"><input type="text" class="form-control"  name="textfield" id="textfield" required /></th>
+    </tr>
+    <tr>
+      <td>TYPE</td>
+      <td><input type="text"  class="form-control" name="textfield3" id="textfield3" required/></td>
+    </tr>
+    <tr>
+      <td>TIME</td>
+      <td><input type="text"  class="form-control" name="textfield4" id="textfield4" required /></td>
+    </tr>
+    <tr>
+      <td>VENUE</td>
+      <td><input type="text"  class="form-control" name="textfield5" id="textfield5" required/></td>
+    </tr> </table>
+      <tr>
+          <input type="submit" name="button" id="button" value="ADD" />
+      </tr>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'STAFF/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/s_edeventpost/">
+{% csrf_token %}
+    <input type="hidden" name="id" id="textfield" value="{{ data.id }}" />
+  <table width="288" border="1" class="table table-bordered">
+    <tr>
+      <th width="104" scope="col">DATE</th>
+      <th width="168" scope="col"><input type="date" name="date" id="textfield" value="{{ data.date|date:'Y-m-d' }}" /></th>
+    </tr>
+    <tr>
+      <td>TYPE</td>
+      <td><input type="text" name="type" class="form-control" id="textfield2" value="{{ data.type }}" /></td>
+    </tr>
+    <tr>
+      <td>TIME</td>
+      <td><input type="time" name="time" id="textfield3" value="{{ data.time }}" /></td>&nbsp;
+    </tr>
+    <tr>
+      <td>VENUE</td>
+      <td><input type="text" name="venue" id="textfield4" class="form-control" value="{{ data.venue }}" /></td>
+    </tr>
+      </table>
+      <tr>
+      <input type="submit" name="button" id="button" class="btn btn-success"  value="EDIT" />
+    </tr>
+</form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/s_vieweventpost/">
+{% csrf_token %}
+
+<h3 align="center">VIEW EVENT</h3>
+<table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">FROM</th>
+      <th scope="col"><input type="date" name="textfield" id="textfield" /></th>
+      <th scope="col">TO</th>
+      <th scope="col"><input type="date" name="textfield2" id="textfield2" /></th>
+      <th scope="col"><input type="submit" class="btn btn-success" name="button" id="button" value="SEARCH" /></th>
+    </tr>
+  </table>
+  <table width="542" border="1" class="table table-bordered">
+    <tr>
+      <th width="49" scope="col">S/NO</th>
+      <th width="31" scope="col">DATE</th>
+      <th width="51" scope="col">TYPE</th>
+      <th width="67" scope="col">TIME</th>
+      <th width="68" scope="col">VENUE</th>
+      <th colspan="2" scope="col">ACTION</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.date }}&nbsp;</td>
+      <td>{{ i.type }}</td>
+      <td>{{ i.venue }}</td>
+      <td>{{ i.time }}</td>
+      <td width="44"><a href="/myapp/s_edevent/{{ i.id }}#id">EDIT</a></td>
+      <td width="186"><a href="/myapp/s_delevent/{{ i.id }}#id">DELETE</a></td>
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

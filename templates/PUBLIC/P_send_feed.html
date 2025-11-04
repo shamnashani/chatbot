@@ -1,0 +1,20 @@
+{% extends 'PUBLIC/public_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/p_sendfeedbackpost/">
+    {% csrf_token %}
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <td>FEEDBACK</td>
+        <td><textarea name="textfield" id="textfield" class="form-control" required ></textarea></td>
+    </tr>
+      <tr>
+      <td>E-MAIL</td>
+        <td><input type="email" name="textfield2" id="textfield2" class="form-control"  type="email" required/></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="ADD" class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

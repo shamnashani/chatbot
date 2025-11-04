@@ -1,0 +1,23 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form action="/myapp/s_addfacility_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+    <h3 align="center">ADD FACILITY</h3>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <td scope="col">NAME</td>
+      <th scope="col"><label for="select"></label>
+        <input type="text" class="form-control" name="select" id="select"  pattern="[A-Z a-z]*" required/>
+      </th>
+    </tr>
+    <tr>
+      <td>IMAGE</td>
+      <td><label for="fileField"></label>
+      <input type="file" name="fileField" id="fileField" required /></td>
+    </tr>
+      <tr>
+      <input type="submit" class="btn btn-success" name="button" id="button" value="ADD" />
+    </tr>
+  </table>
+</form>
+{% endblock %}

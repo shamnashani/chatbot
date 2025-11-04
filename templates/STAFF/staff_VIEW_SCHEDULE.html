@@ -1,0 +1,31 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form id="form2" name="form2" method="post" action="/myapp/viewschedule_post/">
+    {% csrf_token %}
+<h3 align="center">VIEW SCHEDULE</h3>
+</form>
+<form id="form1" name="form1" method="post" action="">
+  <table width="656" border="1" class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="125" scope="col">PROGRAM NAME</th>
+      <th width="56" scope="col">DATE</th>
+      <th width="56" scope="col">TIME</th>
+{#      <th colspan="2" scope="col">ACTION</th>#}
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.programname }}&nbsp;</td>
+      <td>{{ i.date }}</td>
+      <td>{{ i.time }}</td>
+{#      <td>{{ i.Venue }}</td>#}
+{#      <td width="52"><a href="/myapp/edschedule/{{ i.id }}">EDIT</a></td>#}
+{#      <td width="78"><a href="/myapp/delschedule/{{ i.id }}">DELETE</a></td>#}
+        {% endfor %}
+    </tr>
+  </table>
+  <p><br />
+</p>
+</form>
+{% endblock %}

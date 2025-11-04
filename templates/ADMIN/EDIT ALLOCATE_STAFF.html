@@ -1,0 +1,31 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/edallostaff_post/">
+{% csrf_token %}
+ <input type="hidden" name="id" value="{{ data.id }}"/>
+  <table width="200" border="1">
+    <tr>
+      <th scope="col">COURSE</th>
+      <td><label for="select"></label>
+        <select name="select" id="select">
+            {% for i in g %}
+            <option value="{{ i.id }}" {% if data.SUBJECT.id == i.id %}selected{% endif %} >{{ i.subjectname }}</option>
+            {% endfor %}
+      </select></td>
+    </tr>
+    <tr>
+      <td>STAFF</td>
+      <td><label for="select"></label>
+        <select name="select1" id="select">
+             {% for i in data1 %}
+            <option value="{{ i.id }}"{% if data.STAFF.id == i.id %}selected{% endif %}>{{ i.name }}</option>
+            {% endfor %}
+      </select></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="UPDATE" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

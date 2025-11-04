@@ -1,0 +1,24 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form action="/myapp/addfacility_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+    <h3 align="center">ADD FACILITY</h3>
+  <table width="200" border="1"class="table table-bordered">
+    <tr>
+      <th scope="col">NAME</th>
+      <th scope="col"><label for="select"></label>
+        <input type="text" class="form-control" name="select" id="select"  required/>
+      </th>
+    </tr>
+    <tr>
+      <td>IMAGE</td>
+      <td><label for="fileField"></label>
+      <input type="file" name="fileField" id="fileField" required/></td>
+    </tr>
+        </table>
+
+    <tr>
+     <input type="submit" name="button" id="button" value="ADD" class="btn btn-success"/>
+    </tr>
+</form>
+{% endblock %}

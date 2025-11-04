@@ -1,0 +1,28 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/edschedule_post/">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ data.id }}"/>
+  <table width="390" border="1" class="table table-bordered">
+    <tr>
+      <td width="206" scope="col">PROGRAM NAME</td>
+        <td><label for="textfield"></label>
+        <input type="text" name="textfield11" value="{{ data.programname }}" id="textfield11"  class="form-control" /></td>
+    </tr>
+    <tr>
+      <td> DATE</td>
+      <td><label for="textfield"></label>
+      <input type="date" name="textfield" value="{{data.date}}" id="textfield"  value="{{ data.date|date:'Y-m-d' }}"   /></td>
+    </tr>
+    <tr>
+      <td>TIME</td>
+      <td><label for="textfield2"></label>
+      <input type="time" name="textfield2" value="{{ data.time }}" id="textfield2"  /></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" class="btn btn-success" id="button" value="UPDATE" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

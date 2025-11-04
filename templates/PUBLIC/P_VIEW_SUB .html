@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'PUBLIC/public_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/p_viewsubpost/">
+{% csrf_token %}
+  <table class="pull-left">
+    <tr>
+      <th scope="col"><select name="select" id="select" class="form-control">
+      <option>--PROGRAMME--</option>
+          {% for i in data1 %}
+
+              <option value="{{ i.id }}">{{ i.coursename }}</option>
+
+          {% endfor %}
+      </select></th>
+{#      <th scope="col">SUB_NAME</th>#}
+{#      <th scope="col"><input type="text" name="textfield" id="textfield" /></th>#}
+      <th scope="col"><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-success" /></th>
+    </tr>
+  </table>
+<br>
+<br>
+  <table width="523" border="1" class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="109" scope="col">PROGRAMME</th>
+      <th width="142" scope="col">COURSE NAME</th>
+{#      <th width="101" scope="col">&nbsp;</th>#}
+{#      <th width="90" scope="col">&nbsp; </th>#}
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.COURSE.coursename}}</td>
+      <td>{{ i.subjectname }}</td>
+{#      <td><a href="/myapp/edsub/{{ i.id }}">EDIT</a></td>#}
+{#      <td><a href="/myapp/delsub/{{ i.id }}">DELETE</a></td>#}
+        {% endfor %}
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
+</html>

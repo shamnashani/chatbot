@@ -1,0 +1,55 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/viewstaff_post/">
+{% csrf_token %}
+<h3 align="center">VIEW STAFF</h3>
+  <label for="textfield"></label>
+  <table width="555" border="1" class="table table-bordered">
+    <tr>
+      <th width="170" scope="col">DEPARTMENT</th>
+      <th width="196" scope="col"><label for="select"></label>
+       <input type="text"  name="textfield" id="textfield"/>
+      </th>
+      <th width="167" scope="col"><input type="submit" class="btn btn-success" name="button" id="button" value="SEARCH" /></th>
+    </tr>
+  </table>
+  <table width="1191" border="1" class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="135" scope="col">DEPARTMENT</th>
+      <th width="59" scope="col">NAME</th>
+      <th width="59" scope="col">DESIGNATION</th>
+      <th width="66" scope="col">PLACE</th>
+      <th width="93" scope="col">DISTRICT</th>
+      <th width="33" scope="col">PHONE</th>
+      <th width="52" scope="col">E-MAIL</th>
+      <th width="84" scope="col">GENDER</th>
+      <th width="43" scope="col">YEAR OF JOINING</th>
+      <th width="158" scope="col">QUALIFICATION</th>
+      <th width="133" scope="col">EXPERIENCE</th>
+      <th width="75" scope="col">PHOTO</th>
+      <th colspan="2" scope="col">ACTION</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.DEPRTMENT.departmentname }}</td>
+      <td>{{i.name  }}</td>
+      <td>{{i.designation  }}</td>
+      <td>{{ i.place }}</td>
+      <td>{{ i.district }}&nbsp;</td>
+      <td>{{ i.phone }}&nbsp;</td>
+      <td>{{ i.email }}&nbsp;</td>
+      <td>{{ i.gender }}</td>
+      <td>{{ i.yoj }}</td>
+      <td>{{ i.qualification }}&nbsp;</td>
+      <td>{{ i.experience }}</td>
+      <td><img src="{{ i.photo }}" height="100" width="100"></td>
+      <td width="44"><a href="/myapp/edstaff/{{ i.id }}#id">EDIT</a></td>
+      <td width="81"><a href="/myapp/delstaff/{{ i.id }}#id">DELETE</a></td>
+        {% endfor %}
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'STAFF/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/changepass_post/">
+    {% csrf_token %}
+     <table class="table table-bordered">
+                <tr>
+                    <td width="216">CURRENT PASSWORD</td>
+                    <td width="177">
+                        <input type="text" class="form-control" name="textfield" id="textfield" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>NEW PASSWORD</td>
+                    <td>
+                        <input type="password" name="textfield2" id="textfield2" class="form-control"
+                               pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}"
+                               title="Must be at least 8 characters, include 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+                               required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>CONFIRM PASSWORD</td>
+                    <td>
+                        <input type="text" class="form-control" name="textfield3" id="textfield3" required />
+                    </td>
+                </tr>
+                     </table>
+
+                <tr>
+                    <input type="submit" class="btn btn-success" value="CHANGE" />
+                </tr>
+
+
+{# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+    <script>
+        function validatePassword() {
+            let currentPassword = document.getElementById("currentPassword").value;
+            let newPassword = document.getElementById("newPassword").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Password strength validation
+            let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+            if (!passwordPattern.test(newPassword)) {
+                alert("New password must be at least 8 characters, include 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
+                return false;
+            }
+
+            // Confirm password validation
+            if (newPassword !== confirmPassword) {
+                alert("Confirm Password must match New Password.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</form>
+{% endblock %}

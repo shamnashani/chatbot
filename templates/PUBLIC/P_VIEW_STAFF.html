@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+{% extends 'PUBLIC/public_index.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/myapp/p_viewstaffpost/">
+{% csrf_token %}
+  <label for="textfield"></label>
+  <table class="pull-left">
+    <tr>
+      <th width="170" scope="col">DEPARTMENT</th>
+      <th width="196" scope="col"><label for="select"></label>
+        <select name="select" id="select">
+            {% for i in data1 %}
+            <option value="{{ i.id }}">{{ i.departmentname }}</option>
+            {% endfor %}
+      </select></th>
+{#       <input type="text"  name="textfield" id="textfield"/>#}
+      </th>
+      <th width="167" scope="col"><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-success" /></th>
+    </tr>
+  </table>
+  <table width="1191" border="1" class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="135" scope="col">DEPARTMENT</th>
+      <th width="59" scope="col">NAME</th>
+      <th width="59" scope="col">DESIGNATION</th>
+      <th width="66" scope="col">PLACE</th>
+      <th width="93" scope="col">DISTRICT</th>
+      <th width="33" scope="col">PHONE</th>
+      <th width="52" scope="col">E-MAIL</th>
+      <th width="84" scope="col">GENDER</th>
+      <th width="43" scope="col">YEAR OF JOINING</th>
+      <th width="158" scope="col">QUALIFICATION</th>
+      <th width="133" scope="col">EXPERIENCE</th>
+      <th width="75" scope="col">PHOTO</th>
+{#      <th colspan="2" scope="col">ACTION</th>#}
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.DEPRTMENT.departmentname }}</td>
+      <td>{{i.name  }}</td>
+      <td>{{i.designation  }}</td>
+      <td>{{ i.place }}</td>
+      <td>{{ i.district }}&nbsp;</td>
+      <td>{{ i.phone }}&nbsp;</td>
+      <td>{{ i.email }}&nbsp;</td>
+      <td>{{ i.gender }}</td>
+      <td>{{ i.dob }}</td>
+      <td>{{ i.qualification }}&nbsp;</td>
+      <td>{{ i.experience }}</td>
+      <td><img src="{{ i.photo }}" height="100" width="100"></td>
+{#      <td width="44"><a href="/myapp/edstaff/{{ i.id }}">EDIT</a></td>#}
+{#      <td width="81"><a href="/myapp/delstaff/{{ i.id }}">DELETE</a></td>#}
+        {% endfor %}
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+{% endblock %}
+</html>

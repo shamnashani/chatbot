@@ -1,0 +1,54 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/myapp/s_viewstudentpost/">
+{% csrf_token %}
+<h3 align="center">VIEW STUDENT</h3>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">PROGRAMME</th>
+      <th scope="col"><label for="select"></label>
+
+        <select name="select" id="select">
+              {% for i in data1 %}
+
+              <option value="{{ i.id }}">{{ i.coursename }}</option>
+
+          {% endfor %}
+      </select></th>
+      <th scope="col">ADMN.NO</th>
+      <th scope="col"><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" /></th>
+      <th scope="col"><input type="submit" class="btn btn-success" name="button" id="button" value="SEARCH" /></th>
+    </tr>
+  </table>
+  <table width="645" border="1"  class="table table-bordered">
+    <tr>
+      <th width="47" scope="col">S/NO</th>
+      <th width="82" scope="col">COURSE</th>
+      <th width="79" scope="col">ADMN.NO</th>
+      <th width="59" scope="col">NAME</th>
+      <th width="43" scope="col">DOB</th>
+      <th width="66" scope="col">PLACE</th>
+      <th width="72" scope="col">E-MAIL</th>
+      <th width="70" scope="col">PHONE</th>
+      <th width="33" scope="col">PIN</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.COURSE.coursename }}&nbsp;</td>
+      <td>{{ i.admissionNo }}</td>
+      <td>{{ i.name }}&nbsp;</td>
+      <td>{{ i.dob }}&nbsp;</td>
+      <td>{{ i.place }}&nbsp;</td>
+      <td>{{ i.email }}&nbsp;</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.pin }}</td>
+{#      <td width="4"><a href="/myapp/edstud/{{ i.id }}">EDIT</a></td>#}
+{#      <td width="10"><a href="/myapp/delstudent/{{ i.id }}">DELETE</a></td>#}
+        {% endfor %}
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</form>
+{% endblock %}

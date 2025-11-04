@@ -1,0 +1,163 @@
+{% extends 'ADMIN/admin_index.html' %}
+{% block body %}
+
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+    <body>
+{#    <head>#}
+{#<script src="https://code.jquery.com/jquery-3.6.1.js"#}
+{#        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>#}
+{#    </head>#}
+
+
+<form action="/myapp/addstaff_post/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+{% csrf_token %}
+<h3 align="center">ADD STAFF</h3>
+<table width="200" border="1" class="table table-bordered">
+  <tr>
+    <th scope="col">DEPARTMENT</th>
+    <th scope="col"><select name="stf">
+        {% for i in data %}
+        <option value="{{ i.id }}">{{ i.departmentname }}</option>
+        {% endfor %}
+    </select>
+  </tr>
+  <tr>
+    <td>NAME</td>
+    <td><label for="textfield"></label>
+      <input type="text" class="form-control" name="textfield" id="textfield"  required /></td>
+  </tr>
+  <tr>
+    <td>DESIGNATION</td>
+    <td><label for="textfield1"></label>
+      <input type="text" class="form-control" name="textfield1" id="textfield1"  required /></td>
+  </tr>
+  <tr>
+    <td>PLACE</td>
+    <td><label for="textfield2"></label>
+      <input type="text" class="form-control"  name="textfield2" id="textfield2" required /></td>
+  </tr>
+  <tr>
+    <td>DISTRICT</td>
+      <th scope="col"><label for="select"></label>
+    <select name="District">
+        <option value="Kasaragod">Kasaragod</option>
+        <option value="Kannur">Kannur</option>
+        <option value="Wayanad">Wayanad</option>
+        <option value="Kozhikode">Kozhikode</option>
+        <option value="Malappuram">Malappuram</option>
+        <option value="Palakkad">Palakkad</option>
+        <option value="Thrissur">Thrissur</option>
+        <option value="Ernakulam">Ernakulam</option>
+        <option value="Idukki">Idukki</option>
+        <option value="Kottayam">Kottayam</option>
+        <option value="Alappuzha">Alappuzha</option>
+        <option value="Pathanamthitta">Pathanamthitta</option>
+        <option value="Kollam">Kollam</option>
+        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+    </select>
+  </tr>
+<tr>
+    <td>PHONE</td>
+    <td><label for="textfield4"></label>
+      <input type="text" class="form-control" name="textfield4" pattern="[6-9][0-9]{9}" required /></td>
+  </tr>
+  <tr>
+    <td>E-MAIL</td>
+    <td><label for="email"></label>
+      <input type="email" class="form-control" name="email" id="email"  pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,}"  requiured/><br>
+    <span id="email_error"></span></td>
+  </tr>
+  <tr>
+    <td>GENDER</td>
+    <td><p>
+      <label>
+<input type="radio" name="RadioGroup1" value="male" id="RadioGroup1_0" />
+MALE</label>
+      <br />
+      <label>
+        <input type="radio" name="RadioGroup1" value="female" id="RadioGroup1_1" />
+        FEMALE</label>
+      <br />
+        <label>
+            <input type="radio" name="RadioGroup1" value="male" id="RadioGroup1_0" />
+OTHER</label>
+    </p></td>
+  </tr>
+  <tr>
+    <td>YEAR OF JOINING</td>
+    <td><label for="textfield6"></label>
+      <input type="date" name="textfield6" id="textfield6"  required/></td>
+  </tr>
+  <tr>
+    <td>QUALIFICATION</td>
+    <td><label for="textfield7"></label>
+      <input type="text" class="form-control" name="textfield7" id="textfield7" required /></td>
+  </tr>
+  <tr>
+    <td>EXPERIENCE</td>
+    <td><label for="textfield8"></label>
+      <input type="text" class="form-control" name="textfield8" id="textfield8" required /></td>
+  </tr>
+  <tr>
+    <td>PHOTO</td>
+    <td><label for="fileField"></label>
+      <input type="file" name="fileField" id="fileField" /></td>
+  </tr>
+</table>
+
+  <tr>
+  <input type="submit" class="btn btn-success" name="button" id="button" value="ADD" />
+  </tr>
+</form>
+
+ <script>
+
+        $('#email').change(function () {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
+                }
+            })
+
+            $.ajax({
+
+                url: '/myapp/email_exist/',
+                type: 'POST',
+
+                data: {
+                    email: $(this).val()
+                },
+                success: function (response) {
+                    var email_error = $('#email_error')
+                    var email = $('#email')
+                    var btn=$('#button')
+
+
+                    if (response.status == true) {
+                        $('#email_error').html('Email already exist').css('color', 'red')
+                        $('#email').css('border', '2px solid red')
+                        btn.hide();
+
+                    }
+                    else {
+                        $('#email_error').html('Success').css('color', 'green')
+                        $('#email').css('border', '2px solid green')
+                        btn.show();
+
+
+
+                    }
+
+                    console.log(response.status)
+                }
+
+            })
+
+        })
+
+ </script>
+        </body>
+
+{% endblock %}

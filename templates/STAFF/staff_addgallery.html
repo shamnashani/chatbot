@@ -1,0 +1,18 @@
+{% extends 'STAFF/staff_index.html'%}
+{% block body %}
+<form action="/myapp/s_addgallerypost/" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    {% csrf_token %}
+    <h3 align="center">ADD GALLERY</h3>
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">IMAGE</th>
+      <th scope="col"><label for="fileField"></label>
+      <input type="file" name="fileField" id="fileField" required/></th>
+    </tr>
+
+      <tr>
+          <input type="submit" class="btn btn-success" name="button" id="button" value="ADD"/>
+      </tr>
+  </table>
+</form>
+{% endblock %}
